@@ -876,8 +876,8 @@ const GenesisLandingPage = () => {
                 Unloack the power of Tenzor AI with key features
               </h2>
               <p className="mt-4 text-center text-sm/7 text-gray-100 max-w-md mx-auto">
-                With Tenzor AI robust automation tools, propel streamline
-                your business operations, enhance customer relationships.
+                With Tenzor AI robust automation tools, propel streamline your
+                business operations, enhance customer relationships.
               </p>
             </div>
 
@@ -906,11 +906,10 @@ const GenesisLandingPage = () => {
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
                 <h3 className="text-2xl font-medium text-white">
-                  Lead Tracking
+                  Smarter insights
                 </h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Improve lead management and evaluation to focus on the most
-                  promising prospects.
+                  Make faster, data-driven decisions powered by real-time AI analysis and prediction.
                 </p>
                 <a
                   href="#!"
@@ -946,10 +945,9 @@ const GenesisLandingPage = () => {
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">Follow-ups</h3>
+                <h3 className="text-2xl font-medium text-white">Integrated AI solutions</h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Streamline your workflow by automating follow-ups to boost
-                  engagement and save time.
+                  No extra tools or plugins needed. Get built-in, scalable AI from day one.
                 </p>
                 <a
                   href="#!"
@@ -985,11 +983,9 @@ const GenesisLandingPage = () => {
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">Sites Built</h3>
+                <h3 className="text-2xl font-medium text-white">End-to-end automation</h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Develop tailored lead-nurturing workflows to enable
-                  personalized and meaningful interactions with potential
-                  clients.
+                  Eliminate bottlenecks with intelligent workflows that never leave you guessing.
                 </p>
                 <a
                   href="#!"
@@ -1017,9 +1013,9 @@ const GenesisLandingPage = () => {
           </div>
 
           {/* Testimonials */}
-<section className="mt-32 flex flex-col items-center max-w-6xl mx-auto px-6 overflow-hidden">
-  {/* Modern Animation Styles */}
-  <style>{`
+          <section className="mt-32 flex flex-col items-center max-w-6xl mx-auto px-6 overflow-hidden">
+            {/* Modern Animation Styles */}
+            <style>{`
     @keyframes scrollLeft {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -1049,101 +1045,129 @@ const GenesisLandingPage = () => {
     }
   `}</style>
 
-  <div className="text-center mb-16">
-    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
-      Loved by Sales Teams <br /> <span className="text-orange-500">Worldwide</span>
-    </h2>
-    <p className="text-gray-400 text-lg max-w-xl mx-auto">
-      See why thousands of businesses trust Tenzor AI to manage their customer relationships.
-    </p>
-  </div>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
+                Loved by Sales Teams <br />{" "}
+                <span className="text-orange-500">Worldwide</span>
+              </h2>
+              <p className="text-gray-400 text-lg max-w-xl mx-auto">
+                See why thousands of businesses trust Tenzor AI to manage their
+                customer relationships.
+              </p>
+            </div>
 
-  <div className="testimonial-container w-full flex flex-col gap-10 mask-edges">
-    {/* ROW 1: LEFT TO RIGHT */}
-    <div className="w-full overflow-hidden">
-      <div className="animate-scroll-left">
-        {[...Array(2)].map((_, i) => (
-          <div key={`row1-loop-${i}`} className="flex gap-8 pr-8">
-            {[
-              {
-                name: "Richard Nelson",
-                img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
-                text: "Tenzor AI transformed our sales process. We closed 40% more deals in the first quarter after switching.",
-              },
-              {
-                name: "Sophia Martinez",
-                img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
-                text: "Finally, a CRM that marketing and sales can use together. Lead scoring and tracking have never been easier.",
-              },
-              {
-                name: "Ethan Roberts",
-                img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60",
-                text: "As a startup, we needed something powerful yet affordable. Tenzor AI delivers enterprise features at a fraction.",
-              },
-            ].map((user, idx) => (
-              <div key={idx} className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">Founder & CEO</p>
-                    <p className="text-white font-semibold text-sm">{user.name}</p>
-                  </div>
-                  <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
-                    <Image src={user.img} alt={user.name} fill className="object-cover" unoptimized />
-                  </div>
+            <div className="testimonial-container w-full flex flex-col gap-10 mask-edges">
+              {/* ROW 1: LEFT TO RIGHT */}
+              <div className="w-full overflow-hidden">
+                <div className="animate-scroll-left">
+                  {[...Array(2)].map((_, i) => (
+                    <div key={`row1-loop-${i}`} className="flex gap-8 pr-8">
+                      {[
+                        {
+                          name: "Richard Nelson",
+                          img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
+                          text: "Tenzor AI transformed our sales process. We closed 40% more deals in the first quarter after switching.",
+                        },
+                        {
+                          name: "Sophia Martinez",
+                          img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
+                          text: "Finally, a CRM that marketing and sales can use together. Lead scoring and tracking have never been easier.",
+                        },
+                        {
+                          name: "Ethan Roberts",
+                          img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60",
+                          text: "As a startup, we needed something powerful yet affordable. Tenzor AI delivers enterprise features at a fraction.",
+                        },
+                      ].map((user, idx) => (
+                        <div
+                          key={idx}
+                          className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">
+                                Founder & CEO
+                              </p>
+                              <p className="text-white font-semibold text-sm">
+                                {user.name}
+                              </p>
+                            </div>
+                            <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
+                              <Image
+                                src={user.img}
+                                alt={user.name}
+                                fill
+                                className="object-cover"
+                                unoptimized
+                              />
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
+                            “{user.text}”
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </div>
-                <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
-                  “{user.text}”
-                </p>
               </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
 
-    {/* ROW 2: RIGHT TO LEFT */}
-    <div className="w-full overflow-hidden">
-      <div className="animate-scroll-right">
-        {[...Array(2)].map((_, i) => (
-          <div key={`row2-loop-${i}`} className="flex gap-8 pr-8">
-            {[
-              {
-                name: "Isabella Kim",
-                img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
-                text: "Customer retention improved by 25% since we started using Tenzor AI. The automated touchpoints keep engagement high.",
-              },
-              {
-                name: "Liam Johnson",
-                img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop",
-                text: "I've used Salesforce and HubSpot. Tenzor AI is the first CRM our entire team actually enjoys using daily.",
-              },
-              {
-                name: "Ava Patel",
-                img: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png",
-                text: "The reporting dashboards give me instant insights. I can make data-driven decisions in minutes, not hours.",
-              },
-            ].map((user, idx) => (
-              <div key={idx} className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">Growth Lead</p>
-                    <p className="text-white font-semibold text-sm">{user.name}</p>
-                  </div>
-                  <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
-                    <Image src={user.img} alt={user.name} fill className="object-cover" unoptimized />
-                  </div>
+              {/* ROW 2: RIGHT TO LEFT */}
+              <div className="w-full overflow-hidden">
+                <div className="animate-scroll-right">
+                  {[...Array(2)].map((_, i) => (
+                    <div key={`row2-loop-${i}`} className="flex gap-8 pr-8">
+                      {[
+                        {
+                          name: "Isabella Kim",
+                          img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
+                          text: "Customer retention improved by 25% since we started using Tenzor AI. The automated touchpoints keep engagement high.",
+                        },
+                        {
+                          name: "Liam Johnson",
+                          img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop",
+                          text: "I've used Salesforce and HubSpot. Tenzor AI is the first CRM our entire team actually enjoys using daily.",
+                        },
+                        {
+                          name: "Ava Patel",
+                          img: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png",
+                          text: "The reporting dashboards give me instant insights. I can make data-driven decisions in minutes, not hours.",
+                        },
+                      ].map((user, idx) => (
+                        <div
+                          key={idx}
+                          className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">
+                                Growth Lead
+                              </p>
+                              <p className="text-white font-semibold text-sm">
+                                {user.name}
+                              </p>
+                            </div>
+                            <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
+                              <Image
+                                src={user.img}
+                                alt={user.name}
+                                fill
+                                className="object-cover"
+                                unoptimized
+                              />
+                            </div>
+                          </div>
+                          <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
+                            “{user.text}”
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
                 </div>
-                <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
-                  “{user.text}”
-                </p>
               </div>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+            </div>
+          </section>
 
           {/* FAQ */}
           <section id="faq" className="mt-32 w-full max-w-6xl mx-auto px-6">
