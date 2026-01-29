@@ -50,39 +50,39 @@ const GenesisLandingPage = () => {
 
   const faqs = [
     {
-      question: "Do I need coding or design experience to use PrebuiltUI?",
+      question: "How does Tenzor AI help manage customer relationships?",
       answer:
-        "Basic coding knowledge (HTML/CSS, Tailwind) helps, but advanced design skills aren't required. You can use components as-is or customize them.",
+        "Tenzor AI centralizes all customer data, interactions, and communications in one platform. Track leads, manage deals, automate follow-ups, and gain insights to build stronger customer relationships.",
     },
     {
-      question:
-        "What is PrebuiltUI and how does it help developers and designers?",
+      question: "Can I import my existing customer data?",
       answer:
-        "PrebuiltUI provides ready-to-use, customizable UI components and templates, saving time for developers and designers.",
+        "Yes! Tenzor AI supports importing data from spreadsheets (CSV, Excel), other CRM systems like Salesforce, HubSpot, and Pipedrive, as well as direct API integrations.",
     },
     {
-      question: "Can I use PrebuiltUI components in my existing project?",
+      question: "Is Tenzor AI suitable for small businesses?",
       answer:
-        "Yes, components can be integrated into HTML, React, Next.js, Vue, and other projects using Tailwind CSS.",
+        "Absolutely. Our Starter plan is designed specifically for small businesses and startups. As you grow, you can easily upgrade to access more features and users.",
     },
     {
-      question: "How customizable are the generated components?",
+      question: "Does Tenzor AI integrate with email and calendar?",
       answer:
-        "Components are highly customizable with Tailwind utility classes, theming, and structural adjustments.",
+        "Yes, Tenzor AI integrates seamlessly with Gmail, Outlook, Google Calendar, and Microsoft 365. Sync emails, schedule meetings, and track all communications automatically.",
     },
     {
-      question: "Does PrebuiltUI support team collaboration?",
+      question: "How secure is my customer data?",
       answer:
-        "There's no clear documentation on built-in collaboration features. Check their support for team options.",
+        "We use bank-level encryption (AES-256), SOC 2 Type II compliance, and GDPR-compliant data handling. Your data is backed up daily and stored in secure, redundant data centers.",
     },
     {
-      question: "Can I try PrebuiltUI before purchasing a plan?",
-      answer: "Yes, you can try PrebuiltUI with full access to features.",
+      question: "Can I try Tenzor AI before committing?",
+      answer:
+        "Yes! We offer a 14-day free trial with full access to all features. No credit card required to start.",
     },
   ];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#020202] text-white selection:bg-orange-500/30 overflow-x-hidden font-sans">
+    <div className="relative min-h-screen w-full bg-[#020202] text-white selection:bg-orange-500/30 overflow-x-hidden font-sans scroll-smooth">
       {/* --- MODERN NEON 3-COLOR GLOW --- */}
       <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center">
         <div
@@ -151,6 +151,7 @@ const GenesisLandingPage = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-10 text-[13px] font-bold text-gray-400 uppercase tracking-widest items-center">
+              {/* HOME DROPDOWN */}
               <div className="group relative py-2 cursor-pointer">
                 <span className="hover:text-white transition-colors flex items-center gap-1">
                   Home{" "}
@@ -158,10 +159,11 @@ const GenesisLandingPage = () => {
                     ▼
                   </span>
                 </span>
-                <div className="absolute top-full left-0 hidden group-hover:block pt-4">
+                {/* FADE ANIMATION APPLIED HERE */}
+                <div className="absolute top-full left-0 pt-4 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-[110]">
                   <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 p-5 rounded-xl min-w-[220px] flex flex-col gap-4 normal-case tracking-normal shadow-2xl">
                     <a
-                      href="#"
+                      href="#home"
                       className="hover:text-orange-500 transition-colors text-white"
                     >
                       CRM Management
@@ -188,16 +190,20 @@ const GenesisLandingPage = () => {
                 </div>
               </div>
 
-              <a href="#" className="hover:text-white transition-colors">
+              <a
+                href="#features"
+                className="hover:text-white transition-colors"
+              >
                 Features
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#pricing" className="hover:text-white transition-colors">
                 Pricing
               </a>
               <a href="#" className="hover:text-white transition-colors">
                 Blog
               </a>
 
+              {/* PAGES DROPDOWN */}
               <div className="group relative py-2 cursor-pointer">
                 <span className="hover:text-white transition-colors flex items-center gap-1">
                   Pages{" "}
@@ -205,7 +211,8 @@ const GenesisLandingPage = () => {
                     ▼
                   </span>
                 </span>
-                <div className="absolute top-full left-0 hidden group-hover:block pt-4">
+                {/* FADE ANIMATION APPLIED HERE */}
+                <div className="absolute top-full left-0 pt-4 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-[110]">
                   <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 p-5 rounded-xl min-w-[180px] flex flex-col gap-4 normal-case tracking-normal shadow-2xl text-white">
                     <a
                       href="#"
@@ -217,31 +224,40 @@ const GenesisLandingPage = () => {
                 </div>
               </div>
 
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#contact" className="hover:text-white transition-colors">
                 Contact
               </a>
             </div>
 
-            <div className="flex items-center gap-4 relative" ref={signUpRef}>
+            <div
+              className="flex items-center gap-4 relative"
+              style={{ zIndex: 10000 }}
+              ref={signUpRef}
+            >
               <button
                 onClick={() => setShowSignUp(!showSignUp)}
                 className="hidden sm:block px-8 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-sm font-bold transition-all"
               >
-                Sign Up
+                Early Access
               </button>
 
-              {/* BEAUTIFUL SIGN UP CARD DROPDOWN */}
+              {/* BEAUTIFUL EARLY ACCESS CARD DROPDOWN */}
               {showSignUp && (
-                <div className="absolute top-full right-0 mt-4 w-[360px] animate-in fade-in slide-in-from-top-2 duration-300 z-[110]">
-                  <div className="glass p-8 rounded-3xl border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] relative overflow-hidden">
+                /* Increased z-index to 10001 to ensure it is the highest element on the page */
+                <div className="absolute top-full right-0 mt-4 w-[360px] animate-in fade-in slide-in-from-top-2 duration-300 z-[10001]">
+                  {/* FIXED: Changed background from transparent glass to a solid dark glass (bg-[#0a0a0a]/95) 
+          This prevents the hero text "Close More Deals" from bleeding through the card.
+      */}
+                  <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,1)] relative overflow-hidden isolate">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-60"></div>
 
                     <div className="flex flex-col gap-1 mb-6">
-                      <h3 className="text-xl font-bold tracking-tight">
-                        Create Account
+                      <h3 className="text-xl font-bold tracking-tight text-white">
+                        Request Early Access
                       </h3>
                       <p className="text-gray-400 text-xs">
-                        Start your 14-day free trial today.
+                        Join the waitlist for exclusive first access to Tenzor
+                        AI.
                       </p>
                     </div>
 
@@ -251,27 +267,17 @@ const GenesisLandingPage = () => {
                     >
                       <div className="space-y-1.5">
                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">
-                          Email
+                          Work Email
                         </label>
                         <input
                           type="email"
                           placeholder="name@company.com"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all placeholder:text-gray-700"
-                        />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">
-                          Password
-                        </label>
-                        <input
-                          type="password"
-                          placeholder="••••••••"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all placeholder:text-gray-700"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all placeholder:text-gray-700"
                         />
                       </div>
 
                       <button className="w-full py-4 mt-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition-all shadow-[0_10px_20px_rgba(234,88,12,0.3)] flex items-center justify-center gap-2 group">
-                        Get Started
+                        Join Waitlist
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="18"
@@ -290,10 +296,7 @@ const GenesisLandingPage = () => {
                       </button>
 
                       <p className="text-center text-[11px] text-gray-500">
-                        Already have an account?{" "}
-                        <span className="text-white cursor-pointer hover:underline">
-                          Log in
-                        </span>
+                        We&apos;ll notify you as soon as your spot is ready.
                       </p>
                     </form>
                   </div>
@@ -346,19 +349,22 @@ const GenesisLandingPage = () => {
             className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${isMobileMenuOpen ? "max-h-[600px] opacity-100 mt-6 pb-8" : "max-h-0 opacity-0 pointer-events-none"}`}
           >
             <div className="flex flex-col gap-6 text-sm font-bold text-gray-300 uppercase tracking-widest px-4">
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#home" className="hover:text-white transition-colors">
                 Home
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a
+                href="#features"
+                className="hover:text-white transition-colors"
+              >
                 Features
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#pricing" className="hover:text-white transition-colors">
                 Pricing
               </a>
               <a href="#" className="hover:text-white transition-colors">
                 Blog
               </a>
-              <a href="#" className="hover:text-white transition-colors">
+              <a href="#faq" className="hover:text-white transition-colors">
                 Pages
               </a>
               <a href="#" className="hover:text-white transition-colors">
@@ -403,8 +409,9 @@ const GenesisLandingPage = () => {
         </nav>
 
         {/* Hero Section */}
-        <header className="flex flex-col items-center justify-center text-center pt-44 pb-20 px-6">
-          <div className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full text-[12px] font-bold mb-12 backdrop-blur-md border border-white/5">
+        <header className="flex flex-col items-center justify-center text-center pt-44 pb-20 px-6 overflow-hidden">
+          {/* Move Up Animation: slide-in-from-bottom-4 */}
+          <div className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full text-[12px] font-bold mb-12 backdrop-blur-md border border-white/5 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <span className="text-gray-400 tracking-tight">
               Smart, Fast, Always Active.
             </span>
@@ -413,17 +420,19 @@ const GenesisLandingPage = () => {
             </span>
           </div>
 
-          <h1 className="text-6xl md:text-[94px] font-bold leading-[0.95] tracking-tighter mb-10">
+          {/* Larger Move Up: delay-150 */}
+          <h1 className="text-6xl md:text-[94px] font-bold leading-[0.95] tracking-tighter mb-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
             Close More Deals <br />
             <span className="animated-gradient-text">Grow Your Business.</span>
           </h1>
 
-          <p className="max-w-xl text-gray-300 text-lg md:text-xl mb-12 font-medium leading-relaxed">
+          <p className="max-w-xl text-gray-300 text-lg md:text-xl mb-12 font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
             AI-powered CRM & ERP designed to build, scale, and elevate your
             business.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5">
+          {/* Button group moves up slightly */}
+          <div className="flex flex-col sm:flex-row gap-5 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
             <button className="bg-[#cc2b5e] hover:bg-[#e91e63] text-white px-12 py-5 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(204,43,94,0.4)] text-lg">
               Get Started
             </button>
@@ -435,7 +444,8 @@ const GenesisLandingPage = () => {
             </button>
           </div>
 
-          <section className="mt-14 w-full">
+          {/* Logos move in from the left */}
+          <section className="mt-14 w-full animate-in fade-in slide-in-from-left-20 duration-1000 delay-700">
             <p className="py-6 mt-14 text-center text-gray-500">
               Trusted by leading companies worldwide —
             </p>
@@ -477,7 +487,9 @@ const GenesisLandingPage = () => {
               />
             </div>
           </section>
-          <section className="container mx-auto px-6 mt-5 max-w-5xl">
+
+          {/* Stats move in from the right */}
+          <section className="container mx-auto px-6 mt-5 max-w-5xl animate-in fade-in slide-in-from-right-20 duration-1000 delay-1000">
             <div className="bg-white/[0.03] backdrop-blur-md rounded-3xl py-8 px-4 border border-white/5 shadow-xl">
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 divide-x divide-white/5">
                 {/* Stat 1 */}
@@ -534,7 +546,7 @@ const GenesisLandingPage = () => {
         </header>
 
         {/* Feature Section */}
-        <section className="pt-20 flex flex-col items-center">
+        <section id="features" className="pt-20 flex flex-col items-center">
           <div className="text-center">
             <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
               Powerful CRM Features
@@ -860,13 +872,14 @@ const GenesisLandingPage = () => {
           {/* Workflow Steps */}
           <div className="relative space-y-20 md:space-y-30 mt-20 max-w-6xl mx-auto px-6 w-full">
             <div className="text-center">
-            <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
-              Unloack the power of Tenzor CRM with key features
-            </h2>
-            <p className="mt-4 text-center text-sm/7 text-gray-100 max-w-md mx-auto">
-              With Tenzor CRM&apos;s robust automation tools, propel streamline your business operations, enhance customer relationships.
-            </p>
-          </div>
+              <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
+                Unloack the power of Tenzor AI with key features
+              </h2>
+              <p className="mt-4 text-center text-sm/7 text-gray-100 max-w-md mx-auto">
+                With Tenzor AI robust automation tools, propel streamline
+                your business operations, enhance customer relationships.
+              </p>
+            </div>
 
             <div className="flex-col items-center hidden md:flex absolute left-1/2 -translate-x-1/2">
               <p className="flex items-center justify-center font-medium my-10 aspect-square bg-white/5 border border-white/10 w-10 h-10 rounded-full text-white">
@@ -896,7 +909,8 @@ const GenesisLandingPage = () => {
                   Lead Tracking
                 </h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Improve lead management and evaluation to focus on the most promising prospects.
+                  Improve lead management and evaluation to focus on the most
+                  promising prospects.
                 </p>
                 <a
                   href="#!"
@@ -932,11 +946,10 @@ const GenesisLandingPage = () => {
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">
-                  Follow-ups
-                </h3>
+                <h3 className="text-2xl font-medium text-white">Follow-ups</h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Streamline your workflow by automating follow-ups to boost engagement and save time.
+                  Streamline your workflow by automating follow-ups to boost
+                  engagement and save time.
                 </p>
                 <a
                   href="#!"
@@ -972,11 +985,11 @@ const GenesisLandingPage = () => {
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">
-                  Sites Built
-                </h3>
+                <h3 className="text-2xl font-medium text-white">Sites Built</h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Develop tailored lead-nurturing workflows to enable personalized and meaningful interactions with potential clients.
+                  Develop tailored lead-nurturing workflows to enable
+                  personalized and meaningful interactions with potential
+                  clients.
                 </p>
                 <a
                   href="#!"
@@ -1004,78 +1017,136 @@ const GenesisLandingPage = () => {
           </div>
 
           {/* Testimonials */}
-          <section className="mt-32 flex flex-col items-center max-w-6xl mx-auto px-6">
-            <div className="text-center">
-              <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
-                Loved by Sales Teams Worldwide
-              </h2>
-              <p className="mt-4 text-center text-sm/7 text-gray-100 max-w-md mx-auto">
-                See why thousands of businesses trust Tenzor CRM to manage their customer relationships.
-              </p>
-            </div>
+<section className="mt-32 flex flex-col items-center max-w-6xl mx-auto px-6 overflow-hidden">
+  {/* Modern Animation Styles */}
+  <style>{`
+    @keyframes scrollLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes scrollRight {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .animate-scroll-left {
+      display: flex;
+      width: max-content;
+      animation: scrollLeft 35s linear infinite;
+    }
+    .animate-scroll-right {
+      display: flex;
+      width: max-content;
+      animation: scrollRight 35s linear infinite;
+    }
+    /* Fade mask for edges */
+    .mask-edges {
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+    .testimonial-container:hover .animate-scroll-left,
+    .testimonial-container:hover .animate-scroll-right {
+      animation-play-state: paused;
+    }
+  `}</style>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: "Richard Nelson",
-                  img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
-                  text: "Super clean and easy to use. These Tailwind + React components saved me hours of dev time and countless lines of extra code!",
-                },
-                {
-                  name: "Sophia Martinez",
-                  img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
-                  text: "The design quality is top-notch. Perfect balance between simplicity and style. Highly recommend for any creative developer!",
-                },
-                {
-                  name: "Ethan Roberts",
-                  img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60",
-                  text: "Absolutely love the reusability of these components. My workflow feels 10x faster now with cleaner and more consistent layouts.",
-                },
-                {
-                  name: "Isabella Kim",
-                  img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
-                  text: "Clean, elegant, and efficient. These components are a dream for any modern web developer who values beautiful code.",
-                },
-                {
-                  name: "Liam Johnson",
-                  img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop",
-                  text: "I've tried dozens of UI kits, but this one just feels right. Everything works seamlessly and looks incredibly polished.",
-                },
-                {
-                  name: "Ava Patel",
-                  img: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png",
-                  text: "Brilliantly structured components with clean, modern styling. Makes development a joy and design updates super quick.",
-                },
-              ].map((user, idx) => (
-                <div
-                  key={idx}
-                  className="w-full max-w-88 space-y-5 rounded-lg glass p-5 hover:-translate-y-1 transition duration-300"
-                >
-                  <div className="flex items-center justify-between">
-                    <p className="font-medium text-xs text-gray-500 uppercase tracking-widest">
-                      Founder & CEO
-                    </p>
-                    <div className="relative size-10 rounded-full overflow-hidden border border-white/10">
-                      <Image
-                        src={user.img}
-                        alt={user.name}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    </div>
+  <div className="text-center mb-16">
+    <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-white">
+      Loved by Sales Teams <br /> <span className="text-orange-500">Worldwide</span>
+    </h2>
+    <p className="text-gray-400 text-lg max-w-xl mx-auto">
+      See why thousands of businesses trust Tenzor AI to manage their customer relationships.
+    </p>
+  </div>
+
+  <div className="testimonial-container w-full flex flex-col gap-10 mask-edges">
+    {/* ROW 1: LEFT TO RIGHT */}
+    <div className="w-full overflow-hidden">
+      <div className="animate-scroll-left">
+        {[...Array(2)].map((_, i) => (
+          <div key={`row1-loop-${i}`} className="flex gap-8 pr-8">
+            {[
+              {
+                name: "Richard Nelson",
+                img: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=200",
+                text: "Tenzor AI transformed our sales process. We closed 40% more deals in the first quarter after switching.",
+              },
+              {
+                name: "Sophia Martinez",
+                img: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=200",
+                text: "Finally, a CRM that marketing and sales can use together. Lead scoring and tracking have never been easier.",
+              },
+              {
+                name: "Ethan Roberts",
+                img: "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=200&auto=format&fit=crop&q=60",
+                text: "As a startup, we needed something powerful yet affordable. Tenzor AI delivers enterprise features at a fraction.",
+              },
+            ].map((user, idx) => (
+              <div key={idx} className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">Founder & CEO</p>
+                    <p className="text-white font-semibold text-sm">{user.name}</p>
                   </div>
-                  <p className="text-sm/6 text-gray-200 line-clamp-3">
-                    “{user.text}”
-                  </p>
-                  <p className="text-gray-400 text-xs">- {user.name}</p>
+                  <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
+                    <Image src={user.img} alt={user.name} fill className="object-cover" unoptimized />
+                  </div>
                 </div>
-              ))}
-            </div>
-          </section>
+                <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
+                  “{user.text}”
+                </p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* ROW 2: RIGHT TO LEFT */}
+    <div className="w-full overflow-hidden">
+      <div className="animate-scroll-right">
+        {[...Array(2)].map((_, i) => (
+          <div key={`row2-loop-${i}`} className="flex gap-8 pr-8">
+            {[
+              {
+                name: "Isabella Kim",
+                img: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=200&auto=format&fit=crop&q=60",
+                text: "Customer retention improved by 25% since we started using Tenzor AI. The automated touchpoints keep engagement high.",
+              },
+              {
+                name: "Liam Johnson",
+                img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&h=100&auto=format&fit=crop",
+                text: "I've used Salesforce and HubSpot. Tenzor AI is the first CRM our entire team actually enjoys using daily.",
+              },
+              {
+                name: "Ava Patel",
+                img: "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/userImage/userImage1.png",
+                text: "The reporting dashboards give me instant insights. I can make data-driven decisions in minutes, not hours.",
+              },
+            ].map((user, idx) => (
+              <div key={idx} className="w-96 shrink-0 space-y-6 rounded-2xl bg-white/[0.03] backdrop-blur-md p-8 border border-white/10 transition-all duration-500 hover:bg-white/[0.07] hover:border-orange-500/30 group">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-bold text-[10px] text-orange-500 uppercase tracking-widest mb-1">Growth Lead</p>
+                    <p className="text-white font-semibold text-sm">{user.name}</p>
+                  </div>
+                  <div className="relative size-12 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500/50 transition-colors">
+                    <Image src={user.img} alt={user.name} fill className="object-cover" unoptimized />
+                  </div>
+                </div>
+                <p className="text-gray-300 text-sm/7 italic leading-relaxed whitespace-normal">
+                  “{user.text}”
+                </p>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* FAQ */}
-          <section className="mt-32 w-full max-w-6xl mx-auto px-6">
+          <section id="faq" className="mt-32 w-full max-w-6xl mx-auto px-6">
             <div className="text-center">
               <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
                 FAQ&apos;s
@@ -1124,7 +1195,7 @@ const GenesisLandingPage = () => {
           </section>
 
           {/* PRICING */}
-          <section className="mt-32 w-full max-w-7xl mx-auto">
+          <section id="pricing" className="mt-32 w-full max-w-7xl mx-auto">
             <div className="text-center px-6">
               <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
                 Our Pricing Plans
@@ -1324,12 +1395,12 @@ const GenesisLandingPage = () => {
 
           {/* CTA */}
           <div className="relative flex flex-col max-w-[1000px] w-[92%] mt-48 px-8 mx-auto items-center justify-center text-center py-20 rounded-2xl glass overflow-hidden border border-white/10">
-            
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
               Embark on the journey to excellence
             </h2>
             <p className="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
-             Become part of a community that enhances over 100,000 outstanding customer experiences, where your success is out top priority.
+              Become part of a community that enhances over 100,000 outstanding
+              customer experiences, where your success is out top priority.
             </p>
             <button className="px-10 py-4 bg-white text-black rounded-full transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mt-10 font-bold text-base shadow-[0_0_30px_rgba(255,255,255,0.1)]">
               Get Started
