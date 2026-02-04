@@ -19,6 +19,10 @@ const GenesisLandingPage = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isSecurityOpen, setIsSecurityOpen] = useState(false);
+  const [isSitemapOpen, setIsSitemapOpen] = useState(false);
 
   const handleWaitlistSubmit = async (e) => {
     e.preventDefault();
@@ -1472,46 +1476,176 @@ const GenesisLandingPage = () => {
             <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-24 bg-white/5 blur-[80px] pointer-events-none rounded-full"></div>
           </div>
 
-          {/* FOOTER */}
-          <footer className="flex flex-col items-center px-4 md:px-16 lg:px-24 justify-center w-full pt-16 mt-40 glass border-0 border-t border-white/5">
-            <a href="#">
-              <Image
-                alt="logo"
-                loading="lazy"
-                width={205}
-                height={48}
-                className="h-18.5 w-auto"
-                src="/assets/Tenzor-Logo-white-full.png"
-              />
-            </a>
-            <div className="flex flex-wrap items-center justify-center gap-8 py-8">
-              <a
-                className="transition hover:text-gray-300"
-                href="#terms-of-service"
-              >
-                Terms of Service
-              </a>
-              <a
-                className="transition hover:text-gray-300"
-                href="#privacy-policy"
-              >
-                Privacy Policy
-              </a>
-              <a className="transition hover:text-gray-300" href="#security">
-                Security
-              </a>
-              <a className="transition hover:text-gray-300" href="#sitemap">
-                Sitemap
-              </a>
+        {/* FOOTER */}
+      <footer className="flex flex-col items-center px-4 md:px-16 lg:px-24 justify-center w-full pt-16 mt-40 glass border-0 border-t border-white/5 bg-black/20 backdrop-blur-sm">
+        <a href="#">
+          <Image
+            alt="logo"
+            loading="lazy"
+            width={205}
+            height={48}
+            className="h-18.5 w-auto"
+            src="/assets/Tenzor-Logo-white-full.png"
+          />
+        </a>
+        <div className="flex flex-wrap items-center justify-center gap-8 py-8 text-gray-400 text-sm font-medium">
+          <button
+            onClick={() => setIsTermsOpen(true)}
+            className="transition hover:text-orange-500"
+          >
+            Terms of Service
+          </button>
+          <button 
+            onClick={() => setIsPrivacyOpen(true)}
+            className="transition hover:text-orange-500"
+          >
+            Privacy Policy
+          </button>
+          <button 
+            onClick={() => setIsSecurityOpen(true)}
+            className="transition hover:text-orange-500"
+          >
+            Security
+          </button>
+          <button 
+            onClick={() => setIsSitemapOpen(true)}
+            className="transition hover:text-orange-500"
+          >
+            Sitemap
+          </button>
+        </div>
+        <hr className="w-full border-white/10 mt-6" />
+        <div className="flex flex-col md:flex-row items-center w-full justify-between gap-4 py-8 px-10">
+          <p className="text-gray-500 text-sm">Build AI agents for free</p>
+          <p className="text-gray-500 text-sm text-center">
+            Copyright © 2026 Greyloops.com. All rights reserved.
+          </p>
+        </div>
+      </footer>
+
+      {/* MODERN TERMS MODAL */}
+      {isTermsOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setIsTermsOpen(false)} />
+          <div className="relative w-full max-w-2xl max-h-[80vh] overflow-hidden bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in zoom-in-95 fade-in duration-300">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-6 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
+              <h3 className="text-xl font-bold text-white tracking-tight">Terms of Service</h3>
+              <button onClick={() => setIsTermsOpen(false)} className="p-2 rounded-full hover:bg-white/5 transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-white"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
             </div>
-            <hr className="w-full border-white/20 mt-6" />
-            <div className="flex flex-col md:flex-row items-center w-full justify-between gap-4 py-4 px-10">
-              <p className="text-gray-400 text-sm">Build AI agents for free</p>
-              <p className="text-gray-400 text-sm text-center">
-                Copyright © 2026 Greyloops.com. All rights reserved.
-              </p>
+            <div className="overflow-y-auto p-8 text-gray-400 text-sm leading-relaxed custom-scrollbar max-h-[calc(80vh-160px)]">
+              <div className="space-y-6">
+                <section>
+                  <h4 className="text-white font-semibold mb-2 uppercase text-[11px] tracking-widest">1. Agreement</h4>
+                  <p>By joining the Tenzor AI waitlist, you agree to receive updates regarding our services. We value your privacy and handle your data as outlined in our Privacy Policy.</p>
+                </section>
+                <section>
+                  <h4 className="text-white font-semibold mb-2 uppercase text-[11px] tracking-widest">2. Service Usage</h4>
+                  <p>Our platform uses advanced neural processing. You agree not to misuse the AI tools for generating harmful, illegal, or deceptive content. Any breach results in immediate access termination.</p>
+                </section>
+                <div className="pt-4 border-t border-white/5 text-[10px] text-gray-500">Last updated: February 04, 2026</div>
+              </div>
             </div>
-          </footer>
+            <div className="p-6 bg-[#0a0a0a] border-t border-white/5 flex justify-end">
+              <button onClick={() => setIsTermsOpen(false)} className="bg-white text-black px-8 py-3 rounded-full font-bold text-sm hover:bg-gray-200 transition-all">I Understand</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODERN PRIVACY POLICY MODAL */}
+      {isPrivacyOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setIsPrivacyOpen(false)} />
+          <div className="relative w-full max-w-2xl max-h-[80vh] overflow-hidden bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in zoom-in-95 fade-in duration-300">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-6 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
+              <h3 className="text-xl font-bold text-white tracking-tight">Privacy Policy</h3>
+              <button onClick={() => setIsPrivacyOpen(false)} className="p-2 rounded-full hover:bg-white/5 transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-white"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div className="overflow-y-auto p-8 text-gray-400 text-sm leading-relaxed custom-scrollbar max-h-[calc(80vh-160px)]">
+              <div className="space-y-6">
+                <section>
+                  <h4 className="text-white font-semibold mb-2 uppercase text-[11px] tracking-widest">Data Collection</h4>
+                  <p>We only collect your email address when you sign up for the waitlist. This information is stored securely on Supabase and used exclusively for service updates.</p>
+                </section>
+                <div className="pt-4 border-t border-white/5 text-[10px] text-gray-500">Last updated: February 04, 2026</div>
+              </div>
+            </div>
+            <div className="p-6 bg-[#0a0a0a] border-t border-white/5 flex justify-end">
+              <button onClick={() => setIsPrivacyOpen(false)} className="bg-white text-black px-8 py-3 rounded-full font-bold text-sm hover:bg-gray-200 transition-all">Close</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODERN SECURITY MODAL */}
+      {isSecurityOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setIsSecurityOpen(false)} />
+          <div className="relative w-full max-w-2xl max-h-[80vh] overflow-hidden bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in zoom-in-95 fade-in duration-300">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-6 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
+              <div className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div><h3 className="text-xl font-bold text-white tracking-tight">Security Protocols</h3></div>
+              <button onClick={() => setIsSecurityOpen(false)} className="p-2 rounded-full hover:bg-white/5 transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-white"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div className="overflow-y-auto p-8 text-gray-400 text-sm leading-relaxed custom-scrollbar max-h-[calc(80vh-160px)]">
+              <div className="space-y-6">
+                <section><h4 className="text-white font-semibold mb-2 uppercase text-[11px] tracking-widest">End-to-End Encryption</h4><p>All data transmitted between your browser and Tenzor AI is encrypted using TLS 1.3.</p></section>
+                <section><h4 className="text-white font-semibold mb-2 uppercase text-[11px] tracking-widest">Supabase Security</h4><p>We leverage Supabase&apos;s enterprise-grade Row Level Security (RLS) to ensure data access is strictly audited.</p></section>
+                <div className="pt-4 border-t border-white/5 text-[10px] text-gray-500 font-mono">SECURE_NODE_STATUS: ACTIVE</div>
+              </div>
+            </div>
+            <div className="p-6 bg-[#0a0a0a] border-t border-white/5 flex justify-end">
+              <button onClick={() => setIsSecurityOpen(false)} className="bg-[#27c93f]/20 text-[#27c93f] border border-[#27c93f]/30 px-8 py-3 rounded-full font-bold text-sm hover:bg-[#27c93f]/30 transition-all">System Secure</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODERN SITEMAP MODAL */}
+      {isSitemapOpen && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-6">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300" onClick={() => setIsSitemapOpen(false)} />
+          <div className="relative w-full max-w-2xl max-h-[80vh] overflow-hidden bg-[#0a0a0a] border border-white/10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in zoom-in-95 fade-in duration-300">
+            <div className="sticky top-0 z-10 flex items-center justify-between px-8 py-6 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
+              <h3 className="text-xl font-bold text-white tracking-tight">Platform Sitemap</h3>
+              <button onClick={() => setIsSitemapOpen(false)} className="p-2 rounded-full hover:bg-white/5 transition-colors group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400 group-hover:text-white"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div className="overflow-y-auto p-10 text-gray-400 text-sm leading-relaxed custom-scrollbar max-h-[calc(80vh-160px)]">
+              <div className="grid grid-cols-2 gap-10">
+                <div className="space-y-4">
+                  <h4 className="text-white font-bold text-xs uppercase tracking-widest border-l-2 border-orange-500 pl-3">Main Navigation</h4>
+                  <ul className="space-y-2 pl-4">
+                    <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#features" className="hover:text-white transition-colors">AI Features</a></li>
+                    <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
+                    <li><a href="#support" className="hover:text-white transition-colors">Support</a></li>
+                  </ul>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-white font-bold text-xs uppercase tracking-widest border-l-2 border-blue-500 pl-3">Legal & Support</h4>
+                  <ul className="space-y-2 pl-4">
+                    <li><button onClick={() => {setIsSitemapOpen(false); setIsTermsOpen(true);}} className="hover:text-white">Terms of Service</button></li>
+                    <li><button onClick={() => {setIsSitemapOpen(false); setIsPrivacyOpen(true);}} className="hover:text-white">Privacy Policy</button></li>
+                    <li><button onClick={() => {setIsSitemapOpen(false); setIsSecurityOpen(true);}} className="hover:text-white">Security</button></li>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="p-6 bg-[#0a0a0a] border-t border-white/5 flex justify-end">
+              <button onClick={() => setIsSitemapOpen(false)} className="bg-white/5 text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-white/10 transition-all border border-white/10">Close Sitemap</button>
+            </div>
+          </div>
+        </div>
+      )}
+
         </section>
       </div>
 
