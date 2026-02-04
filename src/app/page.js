@@ -2,6 +2,11 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = "https://yzvaxrptbsnacxfoeqtc.supabase.co";
+const supabaseKey = "sb_publishable_hZn7vB7auMGTAySqz-is5g_lFkTKITL";
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const GenesisLandingPage = () => {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
@@ -10,6 +15,24 @@ const GenesisLandingPage = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
+  // Waitlist States
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault();
+    setStatus("loading");
+    const { error } = await supabase
+      .from("waitlist")
+      .insert([{ email: email }]);
+    if (error) {
+      setStatus("error");
+    } else {
+      setStatus("success");
+    }
+  };
+
   const signUpRef = useRef(null);
 
   useEffect(() => {
@@ -68,11 +91,6 @@ const GenesisLandingPage = () => {
       question: "Does Tenzor AI integrate with email and calendar?",
       answer:
         "Yes, Tenzor AI integrates seamlessly with Gmail, Outlook, Google Calendar, and Microsoft 365. Sync emails, schedule meetings, and track all communications automatically.",
-    },
-    {
-      question: "How secure is my customer data?",
-      answer:
-        "We use bank-level encryption (AES-256), SOC 2 Type II compliance, and GDPR-compliant data handling. Your data is backed up daily and stored in secure, redundant data centers.",
     },
     {
       question: "Can I try Tenzor AI before committing?",
@@ -137,7 +155,7 @@ const GenesisLandingPage = () => {
         >
           <div className="max-w-[1400px] mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <a href="https://canary.tenzor-ai.cloud/login">
+              <a href="#">
                 <Image
                   alt="logo"
                   loading="lazy"
@@ -151,82 +169,25 @@ const GenesisLandingPage = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-10 text-[13px] font-bold text-gray-400 uppercase tracking-widest items-center">
-              {/* HOME DROPDOWN */}
-              <div className="group relative py-2 cursor-pointer">
-                <span className="hover:text-white transition-colors flex items-center gap-1">
-                  Home{" "}
-                  <span className="text-[8px] opacity-40 group-hover:rotate-180 transition-transform">
-                    ▼
-                  </span>
-                </span>
-                {/* FADE ANIMATION APPLIED HERE */}
-                <div className="absolute top-full left-0 pt-4 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-[110]">
-                  <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 p-5 rounded-xl min-w-[220px] flex flex-col gap-4 normal-case tracking-normal shadow-2xl">
-                    <a
-                      href="#home"
-                      className="hover:text-orange-500 transition-colors text-white"
-                    >
-                      CRM Management
-                    </a>
-                    <a
-                      href="#"
-                      className="hover:text-orange-500 transition-colors text-white"
-                    >
-                      Task Management
-                    </a>
-                    <a
-                      href="#"
-                      className="hover:text-orange-500 transition-colors text-white"
-                    >
-                      Data Analytics
-                    </a>
-                    <a
-                      href="#"
-                      className="hover:text-orange-500 transition-colors text-white"
-                    >
-                      Live Chat
-                    </a>
-                  </div>
+              {[
+                { name: "Home", href: "#home" },
+                { name: "Features", href: "#features" },
+                { name: "Pricing", href: "#pricing" },
+                { name: "Support", href: "#support" },
+              ].map((item) => (
+                <div key={item.name} className="py-2">
+                  <a
+                    href={item.href}
+                    className="relative group transition-all duration-300 ease-out flex items-center"
+                  >
+                    <span className="hover:text-white transition-colors">
+                      {item.name}
+                    </span>
+                    {/* Modern underline fade animation applied to all */}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100"></span>
+                  </a>
                 </div>
-              </div>
-
-              <a
-                href="#features"
-                className="hover:text-white transition-colors"
-              >
-                Features
-              </a>
-              <a href="#pricing" className="hover:text-white transition-colors">
-                Pricing
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Blog
-              </a>
-
-              {/* PAGES DROPDOWN */}
-              <div className="group relative py-2 cursor-pointer">
-                <span className="hover:text-white transition-colors flex items-center gap-1">
-                  Pages{" "}
-                  <span className="text-[8px] opacity-40 group-hover:rotate-180 transition-transform">
-                    ▼
-                  </span>
-                </span>
-                {/* FADE ANIMATION APPLIED HERE */}
-                <div className="absolute top-full left-0 pt-4 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-[110]">
-                  <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl border border-white/10 p-5 rounded-xl min-w-[180px] flex flex-col gap-4 normal-case tracking-normal shadow-2xl text-white">
-                    <a
-                      href="#"
-                      className="hover:text-orange-500 transition-colors"
-                    >
-                      About Us
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <a href="#contact" className="hover:text-white transition-colors">
-                Contact
-              </a>
+              ))}
             </div>
 
             <div
@@ -243,62 +204,82 @@ const GenesisLandingPage = () => {
 
               {/* BEAUTIFUL EARLY ACCESS CARD DROPDOWN */}
               {showSignUp && (
-                /* Increased z-index to 10001 to ensure it is the highest element on the page */
                 <div className="absolute top-full right-0 mt-4 w-[360px] animate-in fade-in slide-in-from-top-2 duration-300 z-[10001]">
-                  {/* FIXED: Changed background from transparent glass to a solid dark glass (bg-[#0a0a0a]/95) 
-          This prevents the hero text "Close More Deals" from bleeding through the card.
-      */}
                   <div className="bg-[#0a0a0a]/95 backdrop-blur-2xl p-8 rounded-3xl border border-white/10 shadow-[0_25px_50px_-12px_rgba(0,0,0,1)] relative overflow-hidden isolate">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-60"></div>
 
-                    <div className="flex flex-col gap-1 mb-6">
-                      <h3 className="text-xl font-bold tracking-tight text-white">
-                        Request Early Access
-                      </h3>
-                      <p className="text-gray-400 text-xs">
-                        Join the waitlist for exclusive first access to Tenzor
-                        AI.
-                      </p>
-                    </div>
-
-                    <form
-                      className="space-y-4"
-                      onSubmit={(e) => e.preventDefault()}
-                    >
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">
-                          Work Email
-                        </label>
-                        <input
-                          type="email"
-                          placeholder="name@company.com"
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-orange-500/50 focus:ring-1 focus:ring-orange-500/20 transition-all placeholder:text-gray-700"
-                        />
+                    {status === "success" ? (
+                      <div className="text-center py-6 animate-in zoom-in duration-500">
+                        <div className="size-16 bg-orange-500/10 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-orange-500/20">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </div>
+                        <h3 className="text-xl font-bold">You&apos;re in!</h3>
+                        <p className="text-gray-400 text-sm mt-2">
+                          We&apos;ve added{" "}
+                          <span className="text-white font-medium">
+                            {email}
+                          </span>{" "}
+                          to our list.
+                        </p>
                       </div>
-
-                      <button className="w-full py-4 mt-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition-all shadow-[0_10px_20px_rgba(234,88,12,0.3)] flex items-center justify-center gap-2 group">
-                        Join Waitlist
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="group-hover:translate-x-1 transition-transform"
+                    ) : (
+                      <>
+                        <div className="flex flex-col gap-1 mb-6">
+                          <h3 className="text-xl font-bold tracking-tight text-white">
+                            Request Early Access
+                          </h3>
+                          <p className="text-gray-400 text-xs">
+                            Join the waitlist for exclusive first access to
+                            Tenzor AI.
+                          </p>
+                        </div>
+                        <form
+                          className="space-y-4"
+                          onSubmit={handleWaitlistSubmit}
                         >
-                          <path d="M5 12h14"></path>
-                          <path d="m12 5 7 7-7 7"></path>
-                        </svg>
-                      </button>
-
-                      <p className="text-center text-[11px] text-gray-500">
-                        We&apos;ll notify you as soon as your spot is ready.
-                      </p>
-                    </form>
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-500 ml-1">
+                              Work Email
+                            </label>
+                            <input
+                              type="email"
+                              required
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              placeholder="name@company.com"
+                              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-orange-500/50 transition-all placeholder:text-gray-700"
+                            />
+                          </div>
+                          <button
+                            disabled={status === "loading"}
+                            className="w-full py-4 mt-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold transition-all shadow-[0_10px_20px_rgba(234,88,12,0.3)] flex items-center justify-center gap-2 group disabled:opacity-50"
+                          >
+                            {status === "loading" ? (
+                              <div className="size-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            ) : (
+                              "Join Waitlist"
+                            )}
+                          </button>
+                          {status === "error" && (
+                            <p className="text-red-500 text-[10px] text-center">
+                              Something went wrong. Please try again.
+                            </p>
+                          )}
+                        </form>
+                      </>
+                    )}
                   </div>
                 </div>
               )}
@@ -361,14 +342,8 @@ const GenesisLandingPage = () => {
               <a href="#pricing" className="hover:text-white transition-colors">
                 Pricing
               </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Blog
-              </a>
-              <a href="#faq" className="hover:text-white transition-colors">
-                Pages
-              </a>
-              <a href="#" className="hover:text-white transition-colors">
-                Contact
+              <a href="#support" className="hover:text-white transition-colors">
+                Support
               </a>
 
               <div className="glass p-6 rounded-2xl flex flex-col gap-4 border-orange-500/20 mt-2">
@@ -409,141 +384,161 @@ const GenesisLandingPage = () => {
         </nav>
 
         {/* Hero Section */}
-        <header className="flex flex-col items-center justify-center text-center pt-44 pb-20 px-6 overflow-hidden">
-          {/* Move Up Animation: slide-in-from-bottom-4 */}
-          <div className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full text-[12px] font-bold mb-12 backdrop-blur-md border border-white/5 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="text-gray-400 tracking-tight">
-              Smart, Fast, Always Active.
-            </span>
-            <span className="text-orange-500 border-l border-white/10 ml-2 pl-2 cursor-pointer">
-              See Demo
-            </span>
-          </div>
+<header
+  id="home"
+  className="flex flex-col items-center justify-center text-center pt-44 pb-20 px-6 overflow-hidden"
+>
+  {/* Modern Animation Styles */}
+  <style>{`
+    @keyframes scrollLeftLogo {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-scroll-logos {
+      display: flex;
+      width: max-content;
+      animation: scrollLeftLogo 35s linear infinite;
+    }
+    .mask-edges-logo {
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+    .logo-marquee-container:hover .animate-scroll-logos {
+      animation-play-state: paused;
+    }
+  `}</style>
 
-          {/* Larger Move Up: delay-150 */}
-          <h1 className="text-6xl md:text-[94px] font-bold leading-[0.95] tracking-tighter mb-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
-            Close More Deals <br />
-            <span className="animated-gradient-text">Grow Your Business.</span>
-          </h1>
+  {/* Badge with Click Event */}
+  <div className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full text-[12px] font-bold mb-12 backdrop-blur-md border border-white/5 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <span className="text-gray-400 tracking-tight">
+      Smart, Fast, Always Active.
+    </span>
+    <span
+      onClick={() => setIsDemoOpen(true)}
+      className="text-orange-500 border-l border-white/10 ml-2 pl-2 cursor-pointer hover:text-orange-400 transition-colors"
+    >
+      See Demo
+    </span>
+  </div>
 
-          <p className="max-w-xl text-gray-300 text-lg md:text-xl mb-12 font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
-            AI-powered CRM & ERP designed to build, scale, and elevate your
-            business.
-          </p>
+  {/* Title Animation */}
+  <h1 className="text-6xl md:text-[94px] font-bold leading-[0.95] tracking-tighter mb-10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-150">
+    Close More Deals <br />
+    <span className="animated-gradient-text">Grow Your Business.</span>
+  </h1>
 
-          {/* Button group moves up slightly */}
-          <div className="flex flex-col sm:flex-row gap-5 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
-            <button className="bg-[#cc2b5e] hover:bg-[#e91e63] text-white px-12 py-5 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(204,43,94,0.4)] text-lg">
-              Get Started
-            </button>
-            <button className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-lg text-white px-12 py-5 rounded-full font-bold transition-all text-lg">
-              <span className="w-6 h-6 flex items-center justify-center border border-white rounded-full text-[10px]">
-                ▶
-              </span>
-              View Demo
-            </button>
-          </div>
+  <p className="max-w-xl text-gray-300 text-lg md:text-xl mb-12 font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-300">
+    AI-powered CRM & ERP designed to build, scale, and elevate your
+    business.
+  </p>
 
-          {/* Logos move in from the left */}
-          <section className="mt-14 w-full animate-in fade-in slide-in-from-left-20 duration-1000 delay-700">
-            <p className="py-6 mt-14 text-center text-gray-500">
-              Trusted by leading companies worldwide —
-            </p>
-            <div className="flex flex-wrap justify-between max-sm:justify-center gap-10 max-w-4xl w-full mx-auto py-4 brightness-0 invert opacity-60">
-              <Image
-                src="/assets/company-logo-1.svg"
-                alt="logo"
-                width={120}
-                height={30}
-                className="h-7 w-auto"
-              />
-              <Image
-                src="/assets/company-logo-2.svg"
-                alt="logo"
-                width={120}
-                height={30}
-                className="h-7 w-auto"
-              />
-              <Image
-                src="/assets/company-logo-3.svg"
-                alt="logo"
-                width={120}
-                height={30}
-                className="h-7 w-auto"
-              />
-              <Image
-                src="/assets/company-logo-4.svg"
-                alt="logo"
-                width={120}
-                height={30}
-                className="h-7 w-auto"
-              />
-              <Image
-                src="/assets/company-logo-5.svg"
-                alt="logo"
-                width={120}
-                height={30}
-                className="h-7 w-auto"
-              />
-            </div>
-          </section>
+  {/* Button group */}
+  <div className="flex flex-col sm:flex-row gap-5 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-500">
+    <button className="bg-[#cc2b5e] hover:bg-[#e91e63] text-white px-12 py-5 rounded-full font-bold transition-all shadow-[0_0_30px_rgba(204,43,94,0.4)] text-lg">
+      Get Started
+    </button>
+    <button
+      onClick={() => setIsDemoOpen(true)}
+      className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-lg text-white px-12 py-5 rounded-full font-bold transition-all text-lg"
+    >
+      <span className="w-6 h-6 flex items-center justify-center border border-white rounded-full text-[10px]">
+        ▶
+      </span>
+      View Demo
+    </button>
+  </div>
 
-          {/* Stats move in from the right */}
-          <section className="container mx-auto px-6 mt-5 max-w-5xl animate-in fade-in slide-in-from-right-20 duration-1000 delay-1000">
-            <div className="bg-white/[0.03] backdrop-blur-md rounded-3xl py-8 px-4 border border-white/5 shadow-xl">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 divide-x divide-white/5">
-                {/* Stat 1 */}
-                <div className="flex flex-col items-center">
-                  <h2
-                    className="text-3xl md:text-4xl font-black tracking-tighter mb-1"
-                    style={{ color: "#ff7c00" }}
-                  >
-                    +24%
-                  </h2>
-                  <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest">
-                    Higher leads
-                  </p>
-                </div>
-
-                {/* Stat 2 */}
-                <div className="flex flex-col items-center border-none sm:border-solid">
-                  <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-1 text-white">
-                    99%
-                  </h2>
-                  <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest text-center px-2">
-                    Satisfaction score
-                  </p>
-                </div>
-
-                {/* Stat 3 */}
-                <div className="flex flex-col items-center">
-                  <h2
-                    className="text-3xl md:text-4xl font-black tracking-tighter mb-1"
-                    style={{ color: "#1e00ff" }}
-                  >
-                    4B+
-                  </h2>
-                  <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest">
-                    Daily API calls
-                  </p>
-                </div>
-
-                {/* Stat 4 */}
-                <div className="flex flex-col items-center">
-                  <h2
-                    className="text-3xl md:text-4xl font-black tracking-tighter mb-1"
-                    style={{ color: "#d9165f" }}
-                  >
-                    35B
-                  </h2>
-                  <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest text-center px-2">
-                    Messages in 2025
-                  </p>
-                </div>
+  {/* Logos Section - Fixed Width & Masked Marquee */}
+  <section className="mt-14 w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-left-20 duration-1000 delay-700">
+    <p className="py-6 mt-14 text-center text-gray-500">
+      Trusted by leading companies worldwide —
+    </p>
+    
+    <div className="logo-marquee-container w-full overflow-hidden mask-edges-logo py-4">
+      <div className="animate-scroll-logos brightness-0 invert opacity-60">
+        {[...Array(2)].map((_, i) => (
+          <div key={`logo-row-${i}`} className="flex gap-16 pr-16 items-center">
+            {[1, 2, 3, 4, 5].map((num) => (
+              <div key={`logo-${num}-${i}`} className="w-[120px] flex-shrink-0">
+                <Image
+                  src={`/assets/company-logo-${num}.png`}
+                  alt={`logo-${num}`}
+                  width={120}
+                  height={30}
+                  className="h-7 w-auto object-contain mx-auto"
+                />
               </div>
-            </div>
-          </section>
-        </header>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Stats Section */}
+  <section className="container mx-auto px-6 mt-5 max-w-5xl animate-in fade-in slide-in-from-right-20 duration-1000 delay-1000">
+    <div className="bg-white/[0.03] backdrop-blur-md rounded-3xl py-8 px-4 border border-white/5 shadow-xl">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 divide-x divide-white/5">
+        <div className="flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-1" style={{ color: "#ff7c00" }}>+24%</h2>
+          <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest">Higher leads</p>
+        </div>
+        <div className="flex flex-col items-center border-none sm:border-solid">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-1 text-white">99%</h2>
+          <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest text-center px-2">Satisfaction score</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-1" style={{ color: "#1e00ff" }}>4B+</h2>
+          <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest">Daily API calls</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tighter mb-1" style={{ color: "#d9165f" }}>35B</h2>
+          <p className="text-gray-500 font-bold uppercase text-[12px] tracking-widest text-center px-2">Messages in 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* MODERN AI MODAL - VIDEO F.mov */}
+  {isDemoOpen && (
+    <div className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-10">
+      <div
+        className="absolute inset-0 bg-black/95 backdrop-blur-2xl animate-in fade-in duration-500"
+        onClick={() => setIsDemoOpen(false)}
+      ></div>
+
+      <div className="relative w-full max-w-6xl aspect-video bg-black border border-white/10 rounded-[2.5rem] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,1)] animate-in zoom-in-95 duration-500">
+        <div className="flex items-center justify-between px-8 py-5 border-b border-white/5 bg-white/[0.02] relative z-20">
+          <div className="flex gap-2.5">
+            <button onClick={() => setIsDemoOpen(false)} className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:brightness-125 transition-all"></button>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e]"></div>
+            <div className="w-3.5 h-3.5 rounded-full bg-[#27c93f]"></div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></div>
+            <span className="text-[10px] text-gray-400 font-mono uppercase tracking-[0.3em]">
+              Neural_Preview_ERP.mov
+            </span>
+          </div>
+          <button onClick={() => setIsDemoOpen(false)} className="text-gray-500 hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div className="relative h-[calc(100%-60px)] w-full bg-black">
+          <video autoPlay muted loop controls playsInline webkit-playsinline="true" className="w-full h-full object-cover">
+            <source src="/assets/F.mov" type="video/quicktime" />
+            <source src="/assets/F.mov" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  )}
+</header>
 
         {/* Feature Section */}
         <section id="features" className="pt-20 flex flex-col items-center">
@@ -895,27 +890,52 @@ const GenesisLandingPage = () => {
               </p>
             </div>
 
-            <div className="flex items-center justify-center gap-6 md:gap-20 flex-col md:flex-row">
-              <div className="flex-1 relative aspect-video w-full max-w-md rounded-2xl overflow-hidden border border-white/10">
+            <div className="flex items-center justify-center gap-6 md:gap-20 flex-col md:flex-row group/container">
+              {/* IMAGE CONTAINER */}
+              <div className="flex-1 relative aspect-video w-full max-w-md rounded-2xl overflow-hidden border border-white/10 group cursor-pointer">
+                {/* 1. THE IMAGE: Zooms and sharpens on hover */}
                 <Image
-                  src="/assets/workflow1.jpg"
+                  src="/assets/workflow14.jpg"
                   alt="step"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-all duration-700 ease-in-out scale-100 group-hover:scale-110 blur-[1px] group-hover:blur-0 saturate-50 group-hover:saturate-100"
                 />
+
+                {/* 2. AI OVERLAY: Blue/Orange digital tint that fades in */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* 3. THE "GLINT": A high-tech light streak that sweeps across once on hover */}
+                <div
+                  className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none"
+                  style={{ animation: "shimmer 2s infinite" }}
+                />
+
+                {/* 4. NEON CORNERS: Digital 'targeting' brackets that appear on hover */}
+                <div className="absolute top-4 left-4 w-4 h-4 border-t-2 border-l-2 border-orange-500 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0" />
+                <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-orange-500 opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-2 group-hover:translate-x-0" />
               </div>
+
+              {/* TEXT SECTION */}
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">
-                  Smarter insights
-                </h3>
-                <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Make faster, data-driven decisions powered by real-time AI analysis and prediction.
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-medium text-white group-hover/container:text-orange-500 transition-colors duration-500">
+                    Smarter insights
+                  </h3>
+                  <div className="h-0.5 w-12 bg-orange-500 transform origin-left scale-x-0 group-hover/container:scale-x-100 transition-transform duration-500"></div>
+                </div>
+
+                <p className="text-gray-400 text-sm/6 line-clamp-3 pb-2 group-hover/container:text-gray-200 transition-colors duration-500">
+                  Make faster, data-driven decisions powered by real-time AI
+                  analysis and prediction.
                 </p>
+
                 <a
                   href="#!"
-                  className="flex items-center gap-2 text-orange-500 font-bold hover:underline text-sm uppercase tracking-widest"
+                  className="flex items-center gap-2 text-orange-500 font-bold text-sm uppercase tracking-widest group/link"
                 >
-                  Learn More{" "}
+                  <span className="group-hover/link:mr-2 transition-all duration-300">
+                    Learn More
+                  </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
@@ -923,13 +943,12 @@ const GenesisLandingPage = () => {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
+                    strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    className="group-hover/link:scale-125 transition-transform"
                   >
-                    <path d="M15 3h6v6"></path>
-                    <path d="M10 14 21 3"></path>
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </a>
               </div>
@@ -938,16 +957,19 @@ const GenesisLandingPage = () => {
             <div className="flex items-center justify-center gap-6 md:gap-20 flex-col md:flex-row-reverse">
               <div className="flex-1 relative aspect-video w-full max-w-md rounded-2xl overflow-hidden border border-white/10">
                 <Image
-                  src="/assets/workflow2.png"
+                  src="/assets/workflow2.jpg"
                   alt="step"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">Integrated AI solutions</h3>
+                <h3 className="text-2xl font-medium text-white">
+                  Integrated AI solutions
+                </h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  No extra tools or plugins needed. Get built-in, scalable AI from day one.
+                  No extra tools or plugins needed. Get built-in, scalable AI
+                  from day one.
                 </p>
                 <a
                   href="#!"
@@ -976,16 +998,19 @@ const GenesisLandingPage = () => {
             <div className="flex items-center justify-center gap-6 md:gap-20 flex-col md:flex-row">
               <div className="flex-1 relative aspect-video w-full max-w-md rounded-2xl overflow-hidden border border-white/10">
                 <Image
-                  src="/assets/workflow3.png"
+                  src="/assets/workflow4.jpg"
                   alt="step"
                   fill
                   className="object-cover"
                 />
               </div>
               <div className="flex-1 flex flex-col gap-6 md:px-6 max-w-md">
-                <h3 className="text-2xl font-medium text-white">End-to-end automation</h3>
+                <h3 className="text-2xl font-medium text-white">
+                  End-to-end automation
+                </h3>
                 <p className="text-gray-100 text-sm/6 line-clamp-3 pb-2">
-                  Eliminate bottlenecks with intelligent workflows that never leave you guessing.
+                  Eliminate bottlenecks with intelligent workflows that never
+                  leave you guessing.
                 </p>
                 <a
                   href="#!"
@@ -1170,7 +1195,7 @@ const GenesisLandingPage = () => {
           </section>
 
           {/* FAQ */}
-          <section id="faq" className="mt-32 w-full max-w-6xl mx-auto px-6">
+          <section id="support" className="mt-32 w-full max-w-6xl mx-auto px-6">
             <div className="text-center">
               <h2 className="text-3xl font-semibold max-w-lg mx-auto mt-4 text-white">
                 FAQ&apos;s
@@ -1449,7 +1474,7 @@ const GenesisLandingPage = () => {
 
           {/* FOOTER */}
           <footer className="flex flex-col items-center px-4 md:px-16 lg:px-24 justify-center w-full pt-16 mt-40 glass border-0 border-t border-white/5">
-            <a href="https://canary.tenzor-ai.cloud/login">
+            <a href="#">
               <Image
                 alt="logo"
                 loading="lazy"
